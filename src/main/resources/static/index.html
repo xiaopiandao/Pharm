@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>医务室药品管理系统</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header>
+    <h1>医务室药品管理系统</h1>
+    <p>扫码入库 / 出库 / 预警查询（前端演示版）</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>1. 新增药品</h2>
+      <form id="drugForm">
+        <input name="code" placeholder="药品编码" required />
+        <input name="name" placeholder="药品名称" required />
+        <input name="spec" placeholder="规格" />
+        <input name="unit" placeholder="单位(盒/瓶)" required />
+        <input name="barcode" placeholder="条码" required />
+        <input name="lowStockThreshold" type="number" min="0" value="20" placeholder="低库存阈值" required />
+        <button type="submit">保存药品</button>
+      </form>
+      <pre id="drugResult"></pre>
+    </section>
+
+    <section class="card">
+      <h2>2. 扫码查询</h2>
+      <div class="row">
+        <input id="scanCode" placeholder="请输入或扫码枪输入条码" />
+        <button id="scanBtn">查询</button>
+      </div>
+      <pre id="scanResult"></pre>
+    </section>
+
+    <section class="card">
+      <h2>3. 入库</h2>
+      <form id="inboundForm">
+        <input name="supplierName" placeholder="供应商" value="默认供应商" required />
+        <input name="scanCode" placeholder="条码" required />
+        <input name="batchNo" placeholder="批号" required />
+        <input name="productionDate" type="date" required />
+        <input name="expiryDate" type="date" required />
+        <input name="purchasePrice" type="number" step="0.01" placeholder="采购价" required />
+        <input name="quantity" type="number" min="1" placeholder="数量" required />
+        <button type="submit">提交入库</button>
+      </form>
+      <pre id="inboundResult"></pre>
+    </section>
+
+    <section class="card">
+      <h2>4. 出库</h2>
+      <form id="outboundForm">
+        <input name="receiver" placeholder="领用人/科室" value="医务室" required />
+        <input name="scanCode" placeholder="条码" required />
+        <input name="quantity" type="number" min="1" placeholder="数量" required />
+        <button type="submit">提交出库</button>
+      </form>
+      <pre id="outboundResult"></pre>
+    </section>
+
+    <section class="card">
+      <h2>5. 预警查询</h2>
+      <div class="row">
+        <button id="lowStockBtn">低库存预警</button>
+        <button id="expiringBtn">近效期预警(90天)</button>
+      </div>
+      <pre id="warnResult"></pre>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
